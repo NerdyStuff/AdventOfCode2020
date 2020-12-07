@@ -1,11 +1,9 @@
 file = open("luggage_rules.txt", "r")
 
-# TODO => NEEDS TO BE REFACTORED FOR INPUT
-def findColor(searchColor, dictionary):
-    foundKeys = []
+def findColor(searchColor, bagList):
     if any(searchColor in string for string in bagList) == True:
-        foundKeys.append(dictionary[color])
-    return foundKeys
+        return True
+    return False
 
 rules = dict()
 for line in file:
@@ -23,6 +21,7 @@ for line in file:
 
 liste = []
 for color, bagList in rules.items():
-    if any("shiny gold" in string for string in bagList) == True:
+    if findColor("shiny gold", bagList):
         liste.append({color: rules[color]})
+
 print(liste)
